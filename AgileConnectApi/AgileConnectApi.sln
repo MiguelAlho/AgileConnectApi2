@@ -14,6 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{74C5803A-515B-4BD8-8263-DB9D6A14EF78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgileConnectApi.UnitTests", "test\AgileConnectApi.UnitTests\AgileConnectApi.UnitTests.csproj", "{C172BB9B-6A74-4944-B4D5-67ED4674ED75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,11 +28,16 @@ Global
 		{BE6A02D7-E847-485D-AB3A-83D3510327E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE6A02D7-E847-485D-AB3A-83D3510327E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE6A02D7-E847-485D-AB3A-83D3510327E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C172BB9B-6A74-4944-B4D5-67ED4674ED75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C172BB9B-6A74-4944-B4D5-67ED4674ED75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C172BB9B-6A74-4944-B4D5-67ED4674ED75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C172BB9B-6A74-4944-B4D5-67ED4674ED75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BE6A02D7-E847-485D-AB3A-83D3510327E2} = {E7DFE1C2-9B9B-40C7-8E7E-750C15AB5AD7}
+		{C172BB9B-6A74-4944-B4D5-67ED4674ED75} = {74C5803A-515B-4BD8-8263-DB9D6A14EF78}
 	EndGlobalSection
 EndGlobal
