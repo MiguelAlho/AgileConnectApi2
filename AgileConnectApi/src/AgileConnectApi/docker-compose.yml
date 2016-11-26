@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  agileconnectapi:
+    image: user/agileconnectapi
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        source: ${DOCKER_BUILD_SOURCE}
