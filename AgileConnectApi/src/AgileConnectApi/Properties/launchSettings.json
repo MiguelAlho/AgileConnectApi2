@@ -27,7 +27,7 @@
     },
     "Docker": {
       "launchBrowser": true,
-      "launchUrl": "http://localhost:{ServicePort}/api/values"
+      "launchUrl": "http://localhost:{ServicePort}/api/Participant"
     }
   }
 }

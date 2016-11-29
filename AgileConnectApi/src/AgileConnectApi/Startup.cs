@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using AgileConnectApi.Models;
 using AgileConnectApi.Models.Repository;
+using Newtonsoft.Json.Serialization;
 
 namespace AgileConnectApi
 {
@@ -29,10 +30,21 @@ namespace AgileConnectApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddMvc();
+            services.AddOptions();
 
-            services.AddSingleton<IParticipantRepository, InMemoryParticipantRepository>();
+            // Add framework services.
+            services
+               .AddMvc()
+               .AddJsonOptions(options =>
+               {
+                   options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+               });
+            
+            services.Configure<DbConfiguration>(configuration =>
+            {
+                configuration.ConnectionString = Configuration.GetConnectionString("DefaultConnection");
+            });
+            services.AddSingleton<IParticipantRepository, SqlServerParticipantRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
