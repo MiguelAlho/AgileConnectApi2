@@ -38,8 +38,8 @@ namespace AgileConnectApi.UnitTests.Controllers
             Mock<IParticipantRepository> repo = new Mock<IParticipantRepository>();
             repo.Setup(x => x.GetListOfParticipants()).Returns(
                 new List<Participant>(){
-                    new Participant(Guid.NewGuid(), "Person A"),
-                    new Participant(Guid.NewGuid(), "Person B")
+                    new Participant(Guid.NewGuid(), "Person", "A"),
+                    new Participant(Guid.NewGuid(), "Person", "B")
                 }
             );
             
@@ -52,6 +52,8 @@ namespace AgileConnectApi.UnitTests.Controllers
             Assert.NotEmpty(result);
             Assert.Equal(2, result.Count());
             Assert.Equal("Person A", result.First().Name);
+            Assert.Equal("Person", result.First().FirstName);
+            Assert.Equal("A", result.First().LastName);
         }
     }
 }

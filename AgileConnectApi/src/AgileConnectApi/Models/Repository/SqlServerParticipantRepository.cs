@@ -24,7 +24,7 @@ namespace AgileConnectApi.Models.Repository
 
         public IEnumerable<Participant> GetListOfParticipants()
         {
-            var queryText = "Select Id, Name From Participant";
+            var queryText = "Select Id, FirstName, LastName From Participant";
 
             using (var connection = new SqlConnection(_connectionString))
             {

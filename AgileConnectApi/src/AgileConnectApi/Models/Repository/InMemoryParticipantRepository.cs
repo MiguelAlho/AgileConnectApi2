@@ -10,8 +10,8 @@ namespace AgileConnectApi.Models.Repository
         public IEnumerable<Participant> GetListOfParticipants()
         {
             return new List<Participant>(){
-                new Participant(Guid.NewGuid(), "Miguel Alho"),
-                new Participant(Guid.NewGuid(), "Eduardo Piairo"),
+                new Participant(Guid.NewGuid(), "Miguel", "Alho"),
+                new Participant(Guid.NewGuid(), "Eduardo","Piairo"),
             };
         }
     }
