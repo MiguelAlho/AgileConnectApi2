@@ -14,7 +14,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Sql\20161129-0001-CreateParticipant.sql" />
+    <None Include="Sql\20161129.0001-Create_TB_Participant.sql" />
+    <None Include="Sql\20161201.1430-ALTER_TB_Participant.sql" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Dapper">

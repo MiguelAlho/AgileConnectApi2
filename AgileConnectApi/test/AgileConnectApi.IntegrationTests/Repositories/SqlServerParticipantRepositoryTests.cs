@@ -64,11 +64,37 @@ namespace AgileConnectApi.IntegrationTests.Repositories
             Assert.Equal(name1, array[0].Name);
         }
 
+        [Fact]
+        [Trait("Temporary", "MigrationValidation")]
+        public void CanReadParticipantListFromDatabaseWhenParticipantInsertedWithSplitnames()
+        {
+            //arrange
+            _fixture.ClearRecords();
+            AddMockParticipantsToDatabaseThroughSplitNames();
+
+            var repo = new SqlServerParticipantRepository(_config);
+
+            var result = repo.GetListOfParticipants();
+
+            Assert.NotNull(result);
+            Assert.NotEmpty(result);
+
+            Assert.Equal(2, result.Count());
+
+            var array = result.OrderBy(o => o.Id).ToArray();
+            Assert.Equal(id1, array[0].Id);
+            Assert.Equal(name1, array[0].Name);
+        }
+
        
         Guid id1 = new Guid(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1);
         Guid id2 = new Guid(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2);
         string name1 = "Name One";
         string name2 = "Name Two";
+        string name1FirstName = "Name";
+        string name2FirstName = "Name";
+        string name1LastName = "One";
+        string name2LastName = "Two";
 
         private void AddMockParticipantsToDatabase()
         {
@@ -79,5 +105,16 @@ namespace AgileConnectApi.IntegrationTests.Repositories
                 connection.Execute(insert, new { id = id2, name = name2 });
             }
         }
+
+        private void AddMockParticipantsToDatabaseThroughSplitNames()
+        {
+            using (var connection = _fixture.GetNewOpenConnection())
+            {
+                var insert = "Insert Into Participant (Id, FirstName, LastName) Values (@id, @firstname, @lastName)";
+                connection.Execute(insert, new { id = id1, firstname = name1FirstName, lastname = name1LastName });
+                connection.Execute(insert, new { id = id2, firstname = name2FirstName, lastname = name2LastName });
+            }
+        }
+
     }
 }
