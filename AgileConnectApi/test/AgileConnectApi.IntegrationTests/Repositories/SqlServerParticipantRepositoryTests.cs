@@ -48,28 +48,6 @@ namespace AgileConnectApi.IntegrationTests.Repositories
         {
             //arrange
             _fixture.ClearRecords();
-            AddMockParticipantsToDatabase();
-
-            var repo = new SqlServerParticipantRepository(_config);
-
-            var result = repo.GetListOfParticipants();
-
-            Assert.NotNull(result);
-            Assert.NotEmpty(result);
-
-            Assert.Equal(2, result.Count());
-
-            var array = result.OrderBy(o => o.Id).ToArray();
-            Assert.Equal(id1, array[0].Id);
-            Assert.Equal(name1, array[0].Name);
-        }
-
-        [Fact]
-        [Trait("Temporary", "MigrationValidation")]
-        public void CanReadParticipantListFromDatabaseWhenParticipantInsertedWithSplitnames()
-        {
-            //arrange
-            _fixture.ClearRecords();
             AddMockParticipantsToDatabaseThroughSplitNames();
 
             var repo = new SqlServerParticipantRepository(_config);
@@ -84,6 +62,8 @@ namespace AgileConnectApi.IntegrationTests.Repositories
             var array = result.OrderBy(o => o.Id).ToArray();
             Assert.Equal(id1, array[0].Id);
             Assert.Equal(name1, array[0].Name);
+            Assert.Equal(name1FirstName, array[0].FirstName);
+            Assert.Equal(name1LastName, array[0].LastName);
         }
 
        
@@ -95,16 +75,6 @@ namespace AgileConnectApi.IntegrationTests.Repositories
         string name2FirstName = "Name";
         string name1LastName = "One";
         string name2LastName = "Two";
-
-        private void AddMockParticipantsToDatabase()
-        {
-            using (var connection = _fixture.GetNewOpenConnection())
-            {
-                var insert = "Insert Into Participant (Id, Name) Values (@id, @name)";
-                connection.Execute(insert, new { id = id1, name = name1 });
-                connection.Execute(insert, new { id = id2, name = name2 });
-            }
-        }
 
         private void AddMockParticipantsToDatabaseThroughSplitNames()
         {
